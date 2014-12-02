@@ -5,6 +5,5 @@ This is a tandem structure of binary Support Vector Machines to solve a multi-cl
 
 Thesis: Multi-class Support Vector Machines for classification of brain hemodynamic patterns. 
 Author: Ana G. Hernandez-Reynoso 
-Advisor: Alejandro Garcia Gonzalez 
+Advisor: Alejandro Garcia-Gonzalez 
 Institution: Tecnologico de Monterrey
-
