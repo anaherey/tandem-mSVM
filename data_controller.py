@@ -9,8 +9,31 @@
 # Thesis: Multi-class Support Vector Machines for classification of 
 #         brain hemodynamic patterns.
 # Author: Ana G. Hernandez Reynoso
+#         anaherey@gmail.com
 # Advisor: Alejandro Garcia Gonzalez
 # Institution: Tecnologico de Monterrey
+
+"""
+tandem-mSVM is a software for multi-class classification with
+  an array of multiple Support Vector Machines in tandem for 
+  problems that have subclasses dependent on main classes.
+Copyright (C) 2014 Ana HeRey
+
+This file 'main_execution.py' is part of tandem-mSVM.
+
+tandem-mSVM is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public Licence
+  as published by the Free Software Foundationm, either version
+  3 of the Licence, or (at your option) any later version.
+
+tandem-mSVM is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
+  GNU General Public Licence for more details.
+
+You should have received a copy of the GNU General Public Licence
+  along with this program; if not, see <http://www.gnu.org/licenses/>.
+"""
 
 import numpy as np
 from sklearn.cross_validation import KFold
@@ -29,6 +52,8 @@ import os
 def read_input(subject):
 	pwd = os.getcwd()
 	data_dir = os.path.join(pwd+"/data/subject"+str(subject)+"_data.csv")
+	if subject == 0: # If example is executed
+		data_dir = os.path.join(pwd+"/example/data/example_data.csv")
 	data = np.loadtxt(open(data_dir,"rb"),delimiter=",",
 		skiprows=1)
 	return data
@@ -46,6 +71,8 @@ def read_input(subject):
 def read_target(subject):
 	pwd = os.getcwd()
 	data_dir = os.path.join(pwd+"/data/subject"+str(subject)+"_target.csv")
+	if subject == 0: # If example is executed
+		data_dir = os.path.join(pwd+"/example/data/example_target.csv")
 	data = np.loadtxt(open(data_dir,"rb"),delimiter=",",
 		skiprows=1)
 	return data
@@ -140,6 +167,6 @@ def save_data(data,subject):
 	pwd = os.getcwd()
 	out_dir = os.path.join(pwd+"/results/subject"+str(subject)+"_output.csv")
 	if subject == 0:
-		out_dir = os.path.join(pwd+"/results/subjectALL_output.csv")
+		out_dir = os.path.join(pwd+"/example/results/example_output.csv")
 	np.savetxt(out_dir,data,delimiter=',',fmt="%.0f")
 	return 0

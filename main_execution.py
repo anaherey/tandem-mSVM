@@ -6,9 +6,31 @@
 # Thesis: Multi-class Support Vector Machines for classification of 
 #         brain hemodynamic patterns.
 # Author: Ana G. Hernandez Reynoso
+#         anaherey@gmail.com
 # Advisor: Alejandro Garcia Gonzalez
 # Institution: Tecnologico de Monterrey
 
+"""
+tandem-mSVM is a software for multi-class classification with
+  an array of multiple Support Vector Machines in tandem for 
+  problems that have subclasses dependent on main classes.
+Copyright (C) 2014 Ana HeRey
+
+This file 'main_execution.py' is part of tandem-mSVM.
+
+tandem-mSVM is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public Licence
+  as published by the Free Software Foundationm, either version
+  3 of the Licence, or (at your option) any later version.
+
+tandem-mSVM is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
+  GNU General Public Licence for more details.
+
+You should have received a copy of the GNU General Public Licence
+  along with this program; if not, see <http://www.gnu.org/licenses/>.
+"""
 import data_controller
 import tandem_classification
 import sys
@@ -16,6 +38,21 @@ import os
 import time
 
 subject = int(sys.argv[1]) # Subject being analyzed
+
+# ------------------------------------------------------------------
+# GNU GPLv3
+# ------------------------------------------------------------------
+print("\n tandem-mSVM v0.1, Copyright (C) 2014 Ana HeRey \n")
+option = raw_input("Type 'more' for more information about the\
+ license.\n Press 'Return' to continue.\n")
+
+if option.lower() == 'more':
+  f = open('COPYING.txt')
+  license = f.read()
+  print(license)
+  print('\n \n')
+  f.close()
+  #print("tandem-mSVM is a software for multi-class classification with an array of multiple Support Vector Machines in tandem for problems that have subclasses dependent on main classes.\n Copyright (C) 2014 Ana HeRey \n \n This file 'main_execution.py' is part of tandem-mSVM. \n \n tandem-mSVM is free software; you can redistribute it and/or modify it under the terms of the GNU General Public Licence as published by the Free Software Foundationm, either version 3 of the Licence, or (at your option) any later version.\n \n tandem-mSVM is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public Licence for more details.\n \n You should have received a copy of the GNU General Public Licence along with this program; if not, see <http://www.gnu.org/licenses/>.")
 
 # ------------------------------------------------------------------
 # Read input/target pair Vectors from CSV files
@@ -111,7 +148,7 @@ SVM2 = tandem_classification.svm_train(X2_train,y2_train,k)
 k = 5 # Number of folds to yield 15 percent for test set
 SVM3 = tandem_classification.svm_train(X3_train,y3_train,k)
 train_time = time.time() - start_time
-print(train_time)
+print('Training time: '+ str(train_time) + ' s')
 
 # ------------------------------------------------------------------
 # Tandem mSVM 
@@ -126,14 +163,14 @@ start_time = time.time()
 """
 Output = tandem_classification.msvm_class(X,SVM1,SVM2,SVM3)
 exec_time = time.time() - start_time
-print(exec_time)
+print('Execution time: ' + str(exec_time*1000) + ' ms')
 
 # ------------------------------------------------------------------
 # Final error calculation
 # ------------------------------------------------------------------
 """ Calculates the final error in percentage for the tandem mSVM """
 error = tandem_classification.error_calc(Output,y)
-print("mSVM error ", str(error),"%")
+print("Tandem mSVM classification error: "+ str(error)+"%")
 
 # ------------------------------------------------------------------
 # Save data to csv file
