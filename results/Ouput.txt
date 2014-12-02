@@ -1,0 +1,2 @@
+Ouput:
+This is a csv file that includes the output for each pattern assigned by the tandem classifier.

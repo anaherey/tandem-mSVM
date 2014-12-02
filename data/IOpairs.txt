@@ -1,0 +1,8 @@
+Input: 
+This must be a csv file subjectid_data where:
+	- rows: are patterns
+	- columns: are features. Include headers
+
+Target:
+This must be a csv file sibjectid_target where:
+	- rows: are patterns known for the input. It is the known output of each pattern.
