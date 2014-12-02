@@ -51,7 +51,7 @@ INSTRUCTIONS
 ---------------------------------
 1. Open Terminal
 
-2. Change directory to where the repository was cloned.
+2. Change working directory to repository directory (where repository was cloned).
 
 3. Run using Anaconda Python 2.7.7
 	Command Line:
